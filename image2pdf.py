@@ -4,7 +4,7 @@ import os
 
 
 def image2pdf(upload_path, result_path, file_name):
-    save_fileName = os.path.join(upload_path, file_name)
+    save_fileName = upload_path
 
     # 파일명이 .jpg 또는 .png일 경우 실행
     files = os.listdir()
@@ -23,5 +23,6 @@ def image2pdf(upload_path, result_path, file_name):
         
     convert_file = os.path.join(result_path, f'{file_name}.pdf')
     
-    return send_file(convert_file, as_attachment=True)
+    # return send_file(convert_file, as_attachment=True)
+
     
