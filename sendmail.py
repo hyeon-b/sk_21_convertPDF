@@ -7,13 +7,13 @@ from dotenv import load_dotenv
 
 def mail_sender(file_path,file_name):
     load_dotenv()
-    SEND_EMAIL = os.getenv(SEND_EMAIL)
-    SEND_PWD = os.getenv(SEND_PWD)
+    SEND_EMAIL = os.getenv("SEND_EMAIL")
+    SEND_PWD = os.getenv("SEND_PWD")
     
     # 발신자, 수신자 및 SMTP서버 정보 설정
     send_email = SEND_EMAIL
     send_pwd = SEND_PWD
-    recv_email = "zxcv321258@naver.com"
+    recv_email = SEND_EMAIL
 
     smtp = smtplib.SMTP('smtp.naver.com', 587)
     smtp.ehlo()
