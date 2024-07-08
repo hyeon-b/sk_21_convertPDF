@@ -5,13 +5,13 @@ from reportlab.pdfbase import pdfmetrics
 import os
 
 def txt2pdf(upload_path, result_path, file_name):
-    file_path = os.path.join(upload_path, file_name)
+    # file_path = os.path.join(upload_path, file_name)
     
     # 텍스트 파일 읽기
-    with open(file_path, 'r', encoding='utf-8') as txt_file:
+    with open(upload_path, 'r', encoding='utf-8') as txt_file:
         text = txt_file.read()
     
-    result_path = os.path.join(result_path, file_name)
+    result_path = os.path.join(result_path, f'{file_name}.pdf')
     # 캔버스 개체 만들기
     pdf_canvas = canvas.Canvas(result_path, pagesize=letter)
     
