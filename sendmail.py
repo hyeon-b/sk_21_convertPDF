@@ -26,14 +26,16 @@ def mail_sender(file_path,file_name):
     msg['To'] = recv_email
     # 이메일 본문
     text = f"{file_name}_첨부 파일이 포함된 이메일입니다."
-    email_body_part = MIMEText(text, 'plain', 'utf-8')
+    email_body_part = MIMEText(text)
     msg.attach(email_body_part)
-    etc_file = rf"{file_name}"
+    etc_file = rf"{file_name}"+".pdf"
+
     # 파일 첨부
     with open(file_path, 'rb') as file:
         file_part = MIMEApplication(file.read())
         file_part.add_header('Content-Disposition','attachment', filename=etc_file)
         msg.attach(file_part)
-    smtp.sendmail( send_email,recv_email,msg.as_string() )
-    smtp.quit()
+        email_string = msg.as_string()
 
+    smtp.sendmail( send_email,recv_email,email_string)
+    smtp.quit()
