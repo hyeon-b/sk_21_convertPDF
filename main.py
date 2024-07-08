@@ -38,7 +38,7 @@ def convert_file(file_type, upload_path, file_name):
     match file_type:
         case '.txt':
             txt2pdf(upload_path, RESULT_DIR, file_name)
-        case '.hwp':
+        case '.hwp'|'.hwpx':
             hwp2pdf(upload_path, RESULT_DIR, file_name)
         case '.docx':
             word2pdf(upload_path, RESULT_DIR, file_name)
