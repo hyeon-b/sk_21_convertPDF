@@ -4,7 +4,7 @@ import os
 
 
 def image2pdf(upload_path, result_path, file_name):
-    save_fileName = upload_path
+    save_fileName = os.path.abspath(upload_path)
 
     # 파일명이 .jpg 또는 .png일 경우 실행
     files = os.listdir()
