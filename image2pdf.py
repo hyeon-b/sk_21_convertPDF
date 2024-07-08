@@ -19,10 +19,5 @@ def image2pdf(upload_path, result_path, file_name):
     pdf.image(save_fileName,0,0,210)
                 
     # .pdf로 저장
-    pdf.output(os.path.join(result_path, f'{file_name}.pdf'), "F")
-        
-    convert_file = os.path.join(result_path, f'{file_name}.pdf')
-    
-    # return send_file(convert_file, as_attachment=True)
-
+    pdf.output(os.path.abspath(os.path.join(result_path, f'{file_name}.pdf')), "F")
     
