@@ -2,11 +2,17 @@ import smtplib, os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
+from dotenv import load_dotenv
 
-def file_sender(file_path,file_name):
+
+def mail_sender(file_path,file_name):
+    load_dotenv()
+    SEND_EMAIL = os.getenv(SEND_EMAIL)
+    SEND_PWD = os.getenv(SEND_PWD)
+    
     # 발신자, 수신자 및 SMTP서버 정보 설정
-    send_email = "zxcv321258@naver.com"
-    send_pwd = "rhkdgo585895"
+    send_email = SEND_EMAIL
+    send_pwd = SEND_PWD
     recv_email = "zxcv321258@naver.com"
 
     smtp = smtplib.SMTP('smtp.naver.com', 587)
@@ -31,8 +37,3 @@ def file_sender(file_path,file_name):
     smtp.sendmail( send_email,recv_email,msg.as_string() )
     smtp.quit()
 
-
-file_name = input('보내고 싶은 파일 이름 : ')
-file_path = os.path.join(os.path.abspath('Save'),file_name)
-
-file_sender(file_path,file_name)
