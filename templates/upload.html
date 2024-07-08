@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head lang='en'>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{{url_for('static', filename='style.css')}}">
+    </head>
+    <body>
+        <h1>PDF 변환 프로그램</h1>
+    <form method="post" action="{{url_for('convert')}}" enctype="multipart/form-data">
+        <b>변환할 파일을 업로드하세요.</b></br>
+        <input type="file" name="file"></br>
+        <input type="checkbox" name="is_trans" value="is_trans"> 번역하기 
+        <input type="checkbox" name="is_email" value="is_email"> 이메일 전송 
+        <input type="checkbox" name="is_slack" value="is_slack"> 슬랙 메시지 전송 </br>
+        <input type="submit" value="변환하기">
+    </form>
+    </body>
+</html>
