@@ -7,8 +7,8 @@ from word2pdf import word2pdf
 from xlsx2pdf import xlsx2pdf
 from image2pdf import image2pdf
 
-UPLOAD_PATH = 'uploads'
-RESULT_PATH = 'converts'
+UPLOAD_DIR = 'uploads'
+RESULT_DIR = 'converts'
 
 # 객체 생성
 app = Flask(__name__)
@@ -21,30 +21,33 @@ def index():
 @app.route('/convert', methods=['GET', 'POST'])
 def convert():
     file = request.files["file"]
-    file.save(os.path.join(UPLOAD_PATH, file.filename))
+    file.save(os.path.join(UPLOAD_DIR, file.filename))
 
-    file_type = os.path.splitext(file.filename)[1]
+    only_file_name, file_type = os.path.splitext(file.filename)    
+
+    upload_path = os.path.join(UPLOAD_DIR, file.filename)
     
-    pdf_file = convert_file(file.filename)
+    convert_file(file_type, upload_path, only_file_name)
     print("파일 변환이 완료되었습니다.")
 
-    return send_file(pdf_file, as_attachment=True)
+    result_path = os.path.join(RESULT_DIR, only_file_name)
+    return send_file(f'{result_path}.pdf', as_attachment=True)
 
 
-def convert_file(file_name):
-    match file_name:
+def convert_file(file_type, upload_path, file_name):
+    match file_type:
         case '.txt':
-            txt2pdf(UPLOAD_PATH, RESULT_PATH, file_name)
+            txt2pdf(upload_path, RESULT_DIR, file_name)
         case '.hwp':
-            hwp2pdf(UPLOAD_PATH, RESULT_PATH, file_name)
+            hwp2pdf(upload_path, RESULT_DIR, file_name)
         case '.docx':
-            word2pdf(UPLOAD_PATH, RESULT_PATH, file_name)
+            word2pdf(upload_path, RESULT_DIR, file_name)
         case '.ppt' | '.pptx':
-            ppt2pdf(UPLOAD_PATH, RESULT_PATH, file_name)
+            ppt2pdf(upload_path, RESULT_DIR, file_name)
         case '.xlsx':
-            xlsx2pdf(UPLOAD_PATH, RESULT_PATH, file_name)
+            xlsx2pdf(upload_path, RESULT_DIR, file_name)
         case '.png' | 'jpg':
-            image2pdf(UPLOAD_PATH, RESULT_PATH, file_name)
+            image2pdf(upload_path, RESULT_DIR, file_name)
 
 
 if __name__ == '__main__':
