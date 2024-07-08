@@ -5,11 +5,13 @@ def hwp2pdf(upload_path, result_path, file_name):
     # 변환한 파일을 저장하는 경로
     File_save_path = os.path.join(result_path, file_name)
 
+    # 한글 프로그램 실행
+    hwp = win.gencache.EnsureDispatch("HWPFrame.HwpObject")
+
     # 변환할 파일 열기
     hwp.Open(upload_path)
     
-    # 한글 프로그램 실행
-    hwp = win.gencache.EnsureDispatch("HWPFrame.HwpObject")
+
     #HWP변수에 한글 보안 모듈 적용
     hwp.RegisterModule('FilePathCheckDLL', 'SecurityModule')
 
