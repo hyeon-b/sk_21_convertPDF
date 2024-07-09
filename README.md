@@ -21,13 +21,13 @@ SK Shieldus rookies 21기_인프라 활용을 위한 파이썬 스터디
 │   └── upload.html
 │
 ├── main.py
-├── hwp2pdf.py
-├── image2pdf.py
-├── ppt2pdf.py
-├── txt2pdf.py
-├── word2pdf.py
-├── xlsx2pdf.py
-├── pdf_translator.py
-├── sendmail.py
-└── sendslack.py
+├── hwp2pdf.py          # 한글 파일을 pdf로 변환
+├── image2pdf.py        # png, jpg 파일을 pdf로 변환
+├── ppt2pdf.py          # ppt 파일을 pdf로 변환
+├── txt2pdf.py          # 텍스트 파일을 pdf로 변환
+├── word2pdf.py         # 워드 파일을 pdf로 변환
+├── xlsx2pdf.py         # 엑셀 파일을 pdf로 변환
+├── pdf_translator.py   # pdf로 생성된 파일을 영어로 번역
+├── sendmail.py         # 메일로 전송
+└── sendslack.py        # 슬랙에 전송
 ```
