@@ -1,14 +1,11 @@
 from fpdf import FPDF
-from flask import Flask, render_template, request, send_file
 import os
 
 
 def image2pdf(upload_path, result_path, file_name):
-    save_fileName = os.path.abspath(upload_path)
-
-    # 파일명이 .jpg 또는 .png일 경우 실행
-    files = os.listdir()
     
+    save_fileName = upload_path
+
     # pdf 불러오기
     pdf = FPDF()
                 
@@ -19,5 +16,5 @@ def image2pdf(upload_path, result_path, file_name):
     pdf.image(save_fileName,0,0,210)
                 
     # .pdf로 저장
-    pdf.output(os.path.abspath(os.path.join(result_path, f'{file_name}.pdf')), "F")
+    pdf.output(os.path.join(result_path, f'{file_name}.pdf'), "F")
     
