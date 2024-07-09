@@ -12,10 +12,6 @@ from pdf_translator import translate_pdf
 
 UPLOAD_DIR = 'uploads'
 RESULT_DIR = 'converts'
-# Slack API 토큰과 메시지를 보낼 채널 설정
-SLACK_API_TOKEN = "your-slack-api-token"
-SLACK_CHANNEL = "your-channel-id"
-
 
 # 객체 생성
 app = Flask(__name__)
@@ -48,7 +44,7 @@ def convert():
     if is_slack:
         message =''' pdf converter를 이용해주셔서 감사합니다.
         변환된 pdf파일입니다. '''
-        send_slack(SLACK_API_TOKEN, SLACK_CHANNEL, upload_path, message)
+        send_slack(upload_path, message)
     if is_trans:
         translated_file = translate_pdf(RESULT_DIR, only_file_name)
         return send_file(translated_file, as_attachment=True)
@@ -68,7 +64,7 @@ def convert_file(file_type, upload_path, file_name):
             ppt2pdf(upload_path, RESULT_DIR, file_name)
         case '.xlsx':
             xlsx2pdf(upload_path, RESULT_DIR, file_name)
-        case '.png' | 'jpg':
+        case '.png' | '.jpg':
             image2pdf(upload_path, RESULT_DIR, file_name)
 
 
