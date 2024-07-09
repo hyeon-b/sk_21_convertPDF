@@ -26,10 +26,10 @@ def xlsx2pdf(upload_path, result_path, file_name):
     workbook = Workbook()
     workbook.LoadFromFile(merged_xlsx)
 
-    # 각 sheet를 변환
-    for sheet in workbook.Worksheets:
-        result_file = os.path.abspath(os.path.join(result_path, file_name)+ '.pdf')
-        sheet.SaveToPdf(result_file)
+    # 통합된 엑셀파일이기 때문에 첫 번째 시트를 선택
+    sheet= workbook.Worksheets[0]
+    result_file = os.path.abspath(os.path.join(result_path, file_name)+ '.pdf')
+    sheet.SaveToPdf(result_file)
 
     workbook.Dispose()
 
