@@ -40,7 +40,7 @@ def convert():
     result_path = os.path.join(RESULT_DIR, only_file_name)
 
     if is_email:
-        mail_sender(upload_path, only_file_name)
+        mail_sender(result_path, only_file_name)
     if is_slack:
         message =''' pdf converter를 이용해주셔서 감사합니다.
         변환된 pdf파일입니다. '''

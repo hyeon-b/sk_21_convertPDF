@@ -5,7 +5,7 @@ from email.mime.application import MIMEApplication
 from dotenv import load_dotenv
 
 
-def mail_sender(file_path,file_name):
+def mail_sender(file_path, file_name):
     load_dotenv()
     SEND_EMAIL = os.getenv("SEND_EMAIL")
     SEND_PWD = os.getenv("SEND_PWD")
@@ -31,7 +31,7 @@ def mail_sender(file_path,file_name):
     etc_file = rf"{file_name}"+".pdf"
 
     # 파일 첨부
-    with open(file_path, 'rb') as file:
+    with open(f'{file_path}.pdf', 'rb') as file:
         file_part = MIMEApplication(file.read())
         file_part.add_header('Content-Disposition','attachment', filename=etc_file)
         msg.attach(file_part)
