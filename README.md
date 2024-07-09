@@ -27,6 +27,7 @@ SK Shieldus rookies 21기_인프라 활용을 위한 파이썬 스터디
 ├── txt2pdf.py          # 텍스트 파일을 pdf로 변환
 ├── word2pdf.py         # 워드 파일을 pdf로 변환
 ├── xlsx2pdf.py         # 엑셀 파일을 pdf로 변환
+│
 ├── pdf_translator.py   # pdf로 생성된 파일을 영어로 번역
 ├── sendmail.py         # 메일로 전송
 └── sendslack.py        # 슬랙에 전송
